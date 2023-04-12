@@ -1,10 +1,11 @@
 {
-  "name": "sample-extension-of-tanh",
-  "displayName": "Sample Extension Of Tanh",
+  "name": "live-page",
+  "displayName": "Live Page",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.7",
+  "publisher": "LivePage",
   "engines": {
-    "vscode": "^1.77.0"
+    "vscode": "^1.76.1"
   },
   "categories": [
     "Other"
@@ -14,8 +15,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "sample-extension-of-tanh.helloWorld",
-        "title": "Tanhnehehe"
+        "command": "live-page.open",
+        "title": "LivePage: Open a live page in your browser"
       }
     ]
   },
@@ -28,7 +29,7 @@
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
-    "@types/vscode": "^1.77.0",
+    "@types/vscode": "^1.76.1",
     "@vscode/test-electron": "^2.3.0",
     "eslint": "^8.36.0",
     "glob": "^8.1.0",
@@ -37,5 +38,6 @@
   },
   "dependencies": {
     "opn": "^6.0.0"
-  }
+  },
+  "license": "MIT"
 }

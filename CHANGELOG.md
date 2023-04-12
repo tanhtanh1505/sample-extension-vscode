@@ -1,6 +1,6 @@
 # Change Log
 
-All notable changes to the "sample-extension-of-tanh" extension will be documented in this file.
+All notable changes to the "live-page" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 

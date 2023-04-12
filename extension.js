@@ -4,29 +4,43 @@ const path = require("path");
 const opn = require("opn");
 
 function activate(context) {
-  let disposable = vscode.commands.registerCommand("sample-extension-of-tanh.helloWorld", function () {
+  let disposable = vscode.commands.registerCommand("live-page.open", function () {
     const workspacePath = vscode.workspace.rootPath;
     if (!workspacePath) {
       vscode.window.showErrorMessage("Không tìm thấy đường dẫn thư mục đang làm việc!");
       return;
     }
 
-    // Đọc nội dung của thư mục
+    // Read all files in workspace
     fs.readdir(workspacePath, (err, files) => {
       if (err) {
         vscode.window.showErrorMessage("Đã xảy ra lỗi khi đọc thư mục: " + err.message);
         return;
       }
 
-      // Lọc ra các file có phần mở rộng là .html
+      // Get all html files
       const htmlFiles = files.filter((file) => path.extname(file) === ".html");
-
       if (htmlFiles.length === 0) {
         vscode.window.showWarningMessage("Không tìm thấy file HTML trong thư mục đang làm việc!");
         return;
       }
 
-      // Mở QuickPick để chọn file HTML
+      //find config file in workspace name .livepage.json
+      const configFiles = fs.readFileSync(path.join(workspacePath, "lpconfig.json"), "utf8");
+
+      let configure = {
+        path: `file://${workspacePath}`,
+      };
+
+      if (configFiles) {
+        const config = JSON.parse(configFiles);
+
+        configure = {
+          path: config.path || "",
+        };
+      }
+
+      // Show quick pick to select file
       const items = htmlFiles.map((file) => {
         return {
           label: file,
@@ -37,11 +51,12 @@ function activate(context) {
 
       vscode.window.showQuickPick(items).then((selected) => {
         if (selected) {
-          // Mở tài liệu văn bản cho file HTML đã chọn
+          // Open file in editor and open in browser
           vscode.workspace.openTextDocument(selected.detail).then((document) => {
             vscode.window.showTextDocument(document);
-            // Mở trang web trong trình duyệt mặc định
-            opn(`file://${selected.detail}`);
+
+            const url = `${configure.path}/${selected.label}`;
+            opn(url);
           });
         }
       });
