@@ -2,7 +2,8 @@
   "name": "live-page",
   "displayName": "Live Page",
   "description": "",
-  "version": "0.0.7",
+  "icon": "images/cat.jpg",
+  "version": "0.0.8",
   "publisher": "LivePage",
   "engines": {
     "vscode": "^1.76.1"
@@ -13,6 +14,15 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceScheme == 'file'",
+          "command": "live-page.open",
+          "group": "navigation"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "live-page.open",
