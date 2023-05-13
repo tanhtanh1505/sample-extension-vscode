@@ -4,7 +4,7 @@ const opn = require("opn");
 function activate(context) {
   let disposable = vscode.commands.registerCommand("live-page.open", function () {
     let editor = vscode.window.activeTextEditor;
-    if (editor.document.languageId === "html") {
+    if (editor.document.languageId === "html" || editor.document.languageId === "php") {
       let fileUri = vscode.Uri.file(editor.document.fileName);
 
       let url = fileUri.path;
@@ -22,7 +22,7 @@ function activate(context) {
         console.log(err);
       });
     } else {
-      vscode.window.showInformationMessage("Please open an HTML file to open in browser.");
+      vscode.window.showInformationMessage("Please open an HTML or PHP file to open in browser.");
     }
   });
 

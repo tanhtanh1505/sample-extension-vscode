@@ -2,7 +2,7 @@
   "name": "live-page",
   "displayName": "Live Page",
   "description": "",
-  "icon": "images/cat.jpg",
+  "icon": "https://temp-data-doc.s3.us-east-2.amazonaws.com/logo.jpeg",
   "version": "0.0.8",
   "publisher": "LivePage",
   "engines": {
