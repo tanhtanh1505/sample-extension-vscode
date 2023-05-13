@@ -1,6 +1,4 @@
 const vscode = require("vscode");
-const fs = require("fs");
-const path = require("path");
 const opn = require("opn");
 
 function activate(context) {
@@ -8,9 +6,21 @@ function activate(context) {
     let editor = vscode.window.activeTextEditor;
     if (editor.document.languageId === "html") {
       let fileUri = vscode.Uri.file(editor.document.fileName);
-      console.log(fileUri);
+
       let url = fileUri.path;
-      opn(url);
+
+      const urlSetting = vscode.workspace.getConfiguration().get("livePage");
+      if (urlSetting && urlSetting.oldPath && urlSetting.oldPath !== "" && urlSetting.newPath && urlSetting.newPath !== "") {
+        console.log(urlSetting.oldPath, urlSetting.newPath);
+        console.log(url);
+        url = url.replace(urlSetting.oldPath, urlSetting.newPath);
+        console.log(url);
+      }
+      vscode.window.showInformationMessage("Opening " + url + " in browser.");
+
+      opn(url).catch((err) => {
+        console.log(err);
+      });
     } else {
       vscode.window.showInformationMessage("Please open an HTML file to open in browser.");
     }
