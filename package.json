@@ -2,8 +2,8 @@
   "name": "live-page",
   "displayName": "Live Page",
   "description": "",
-  "icon": "https://temp-data-doc.s3.us-east-2.amazonaws.com/logo.jpeg",
-  "version": "0.0.8",
+  "icon": "images/logo.jpeg",
+  "version": "1.0.1",
   "publisher": "LivePage",
   "engines": {
     "vscode": "^1.76.1"
