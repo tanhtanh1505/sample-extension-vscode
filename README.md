@@ -1,4 +1,6 @@
-# Sample extension to open a file in the current directory
+# Live Page
+
+Sample extension to open a file in the current directory
 
 ## Usage
 
